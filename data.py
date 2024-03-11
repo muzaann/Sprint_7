@@ -19,4 +19,12 @@ class Data:
     color_data = (
         ['BLACK'], ['GREY'], ['BLACK', 'GREY'], []
     )
+    api_create_courier = "/api/v1/courier"
+    api_login_courier = "/api/v1/courier/login"
+    api_order = "/api/v1/orders"
 
+    text_login_400 = "Недостаточно данных для входа"
+    text_login_404 = "Учетная запись не найдена"
+    text_create_201 = '{"ok":true}'
+    text_create_409 = "Этот логин уже используется"
+    text_create_400 = "Недостаточно данных для создания учетной записи"

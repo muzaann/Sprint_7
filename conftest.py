@@ -11,19 +11,15 @@ def generate_courier_data():
         "password": Data.password,
         "firstName": Data.firstName
     }
-    yield payload
+    return payload
+
 
 
 @pytest.fixture()
-def generate_courier_data_and_delete_after_test():
-    payload = {
-        "login": Data.login,
-        "password": Data.password,
-        "firstName": Data.firstName
-    }
-    yield payload
+def generate_courier_data_and_delete_after_test(generate_courier_data):
+    yield generate_courier_data
     response = requests.post(f'{Data.main_url}/api/v1/courier/login',
-                                data={"login": payload['login'], "password": payload['password']})
+                                data={"login": generate_courier_data['login'], "password": generate_courier_data['password']})
     id_courier = response.json()
     requests.delete(f'{Data.main_url}/api/v1/courier/{id_courier["id"]}')
 

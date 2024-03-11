@@ -12,7 +12,7 @@ class TestOrderCreate:
     @pytest.mark.parametrize("color", Data.color_data)
     def test_order_any_color_success(self, generate_required_order_data, color):
         generate_required_order_data['color'] = color
-        response = requests.post(f'{Data.main_url}/api/v1/orders', data=generate_required_order_data, timeout=7)
+        response = requests.post(f'{Data.main_url}{Data.api_order}', data=generate_required_order_data, timeout=7)
         assert 201 == response.status_code and 'track' in response.text, \
             (f'Ожидаемый код: 201, полученный код: {response.status_code}, \
              ожидаемый текст содержит: "track", полученный текст: {response.text}')
